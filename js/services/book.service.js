@@ -11,7 +11,9 @@ export default {
 
 const BOOKS_KEY = 'books';
 
-var booksDB = [
+var booksDB;
+
+const defaultBooks = [
   {
     "id": "GXj93KOkqZoC",
     "title": "Hacking",
@@ -469,7 +471,7 @@ var booksDB = [
 
 function query() {
     let books = storageService.load(BOOKS_KEY);
-    if (books) booksDB = books;
+    (books)? booksDB = books : booksDB = defaultBooks;
     return Promise.resolve(booksDB);
 }
 

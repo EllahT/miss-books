@@ -22,7 +22,10 @@ export default {
     created() {
         console.log('book app was created');
         bookService.query()
-            .then(books => this.books = books);
+            .then(books => {
+                this.books = books
+                console.log(books)
+            });
     },
 
     computed: {

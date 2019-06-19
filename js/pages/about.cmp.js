@@ -8,7 +8,7 @@ export default {
             </transition>
 
             <transition name="bounce" type="animation" appear>
-                <img class="about-image" src="../../img/thisisus.jpg"/>  
+                <img class="about-image" src="../img/thisisus.jpg"/>  
             </transition>
 
             <transition name="fade" type="animation" appear>
@@ -27,4 +27,6 @@ export default {
         clearInterval(interval);
     }
 } 
+
+
 
