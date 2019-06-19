@@ -1,0 +1,12 @@
+.star {
+    color: grey;
+}
+
+.active-star {
+    color: #EEBD01;
+}
+  
+.stars-list {
+    list-style: none;
+    display: flex;
+}

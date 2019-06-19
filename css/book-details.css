@@ -1,0 +1,94 @@
+
+.book-details {
+    position: relative;
+    margin: 20px 0;
+    background-color: #cea57fb5;
+    padding: 10px;
+    color: #3c3c3c;
+    display: grid;
+    align-items: center;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    grid-template-rows: repeat(5, max-content);
+    grid-template-areas: 
+    "detsHeader"
+    "tags"
+    "pic"
+    "desc"
+    "reviews";
+}
+
+@media (min-width: 750px) {
+    .book-details {
+        grid-gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, max-content);
+        grid-template-areas: 
+        "detsHeader detsHeader pic"
+        "tags tags pic"
+        "desc desc pic"
+        "reviews reviews reviews";
+    }
+}
+
+.book-img {
+    max-width: 100%;
+    max-height: 100%;
+    grid-area: pic;
+    padding-right: 10px;
+}
+
+.bordered {
+    margin: 5px;
+    border: 2px dotted #2196F3;
+    padding: 0px;
+}
+
+.expensive {
+    color: red;
+}
+
+.cheap {
+    color: green;
+}
+
+.sub-list {
+    display: flex;
+    padding: 0;
+}
+
+.sub-list li {
+    padding: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.sale-img {
+    width: 70px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.tags {
+    grid-area: tags;
+}
+
+.book-desc {
+    grid-area: desc;
+}
+
+.book-details-header {
+    grid-area: detsHeader;
+}
+
+.back-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}

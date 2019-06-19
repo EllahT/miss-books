@@ -1,0 +1,15 @@
+
+.filter {
+    background-color: #96abb5;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.filters {
+    display: flex;
+}
+
+.filter-by-title, .filter-by-range {
+    width: 50%;
+}
