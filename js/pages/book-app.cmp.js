@@ -9,7 +9,6 @@ export default {
             <book-list :books="booksToShow" @selected="selectBook"></book-list>            
         </section>
     `,
-  
 
     data() {
         return {
@@ -22,10 +21,7 @@ export default {
     created() {
         console.log('book app was created');
         bookService.query()
-            .then(books => {
-                this.books = books
-                console.log(books)
-            });
+            .then(books => this.books = books);
     },
 
     computed: {

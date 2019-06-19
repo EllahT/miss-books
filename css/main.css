@@ -7,22 +7,22 @@
 
 @font-face {
     font-family: 'courgette';
-    src: url('/fonts/Courgette-Regular.ttf');
+    src: url('../fonts/Courgette-Regular.ttf');
 }
 
 @font-face {
     font-family: 'encodeReg';
-    src: url('/fonts/EncodeSansExpanded-Regular.ttf');
+    src: url('../fonts/EncodeSansExpanded-Regular.ttf');
 }
 
 @font-face {
     font-family: 'encodeBold';
-    src: url('/fonts/EncodeSansExpanded-Bold.ttf');
+    src: url('../fonts/EncodeSansExpanded-Bold.ttf');
 }
 
 @font-face {
     font-family: 'encodeLight';
-    src: url('/fonts/EncodeSansExpanded-Light.ttf');
+    src: url('../fonts/EncodeSansExpanded-Light.ttf');
 }
 
 body {
