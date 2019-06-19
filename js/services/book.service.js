@@ -8,7 +8,8 @@ export default {
   addReview,
   removeReview, 
   getGoogleBooks,
-  addGoogleBook
+  addGoogleBook,
+  getNavByBookId
 }
 
 let booksSearchs = {};
@@ -553,6 +554,12 @@ function addGoogleBook(googleBook) {
   storageService.store(BOOKS_KEY, booksDB);
 
   return Promise.resolve(newBook.id);
+}
+
+function getNavByBookId(bookId,op) {
+  const bookIdx = booksDB.findIndex(book => book.id === bookId);
+  let newId = (op === 'next')? booksDB[bookIdx+1].id : booksDB[bookIdx-1].id;
+  return Promise.resolve(newId);
 }
 
 

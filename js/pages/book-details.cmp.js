@@ -39,6 +39,8 @@ export default {
 
             <book-reviews @addReview="saveReview" @deleteReview="deleteReview" :bookId="book.id"></book-reviews>
 
+            <button class="next-book" @click="navBooks('next')">Next Book</button>
+            <button class="previous-book" @click="navBooks('prev')">Previous Book</button>
             <button class="back-btn" @click="backtoBookList">Back to book list</button>
             
         </div>
@@ -106,7 +108,24 @@ export default {
                     {txt: 'review was deleted!', type: 'failure' ,bookId: id});
             })
         },
+
+        navBooks(op) {
+            bookService.getNavByBookId(this.book.id, op)
+                .then((id) => {
+                    this.$router.push('/book/'+id);
+                })
+        }
     },
+
+    watch: { 
+        '$route.params.theBookId': {
+            handler: function(bookId) {
+                bookService.getBookById(bookId)
+                .then(book => this.book = book)
+           },
+           immediate: true
+         }
+   },
 
     components: {
         bookDescription,

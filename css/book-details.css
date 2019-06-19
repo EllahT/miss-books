@@ -4,6 +4,7 @@
     margin: 20px 0;
     background-color: #cea57fb5;
     padding: 10px;
+    padding-bottom: 50px;
     color: #3c3c3c;
     display: grid;
     align-items: center;
@@ -91,4 +92,18 @@
     position: absolute;
     bottom: 5px;
     right: 5px;
+}
+
+.next-book, .previous-book {
+    max-width: max-content;
+    position: absolute;
+    bottom: 35px;
+}
+
+.next-book {
+    right: 20px;
+}
+
+.previous-book {
+    left: 20px;
 }

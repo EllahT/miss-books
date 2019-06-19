@@ -12,13 +12,15 @@ export default {
             </form>
         </div>
 
-        <button @click="clearList" v-if="books">Clear</button>
-        <ul class="search-res" v-if="books">
-            <li v-for="book in books">
-                {{book.volumeInfo.title}}
-                <button @click="addBook(book)">+</button>
-            </li>
-        </ul>
+        <template v-if="books">
+            <button @click="clearList">Clear</button>
+            <ul class="search-res">
+                <li v-for="book in books">
+                    {{book.volumeInfo.title}}
+                    <button @click="addBook(book)">+</button>
+                </li>
+            </ul>
+        </template>
 
     </section>
 `,
