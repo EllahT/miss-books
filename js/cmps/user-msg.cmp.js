@@ -12,11 +12,6 @@ export default {
     data() {
         return {
             msg: null
-            // msg: {
-            //     txt: 'testing testing testing',
-            //     type: 'success',
-            //     bookId: 'GXj93KOkqZoC'
-            // }
         }
     },
     created() {
