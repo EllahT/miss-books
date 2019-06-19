@@ -13,18 +13,14 @@
     grid-area: reviews;
 }
 
-form {
+.addReviewFrom {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.form-item {
+.addReviewFrom.form-item {
     margin: 5px;
-}
-
-input, select, textarea {
-    font-family: inherit;
 }
 
 .required-field label::after { 

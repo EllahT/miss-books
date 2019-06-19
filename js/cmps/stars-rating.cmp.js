@@ -3,7 +3,7 @@ export default {
     <div class="stars-rating">
         <ul class="stars-list">
             <li v-for="(star, index) in stars">
-                <i class="star fa fa-star" :class="{'active-star': star.isFilled}" @mouseover="viewAsActive(index)" @click="changeRate(index)"></i>
+                <i class="star fa fa-star" :class="{'active-star': star.isFilled}" @mouseover="viewAsActive(index)" @click="changeRate(index)" @mouseout="changeRate(index)"></i>
             </li>
         </ul>
     </div>

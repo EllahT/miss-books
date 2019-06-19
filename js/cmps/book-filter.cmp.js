@@ -1,7 +1,7 @@
 export default {
     template: `
         <section class="book-filter">
-            <h1>Books Filter</h1>
+            <h1>Filter Books</h1>
             
             <div class="filters">
                 <div class="filter-by-title">

@@ -4,6 +4,7 @@
 @import './book-list.css';
 @import './reviews.css';
 @import './stars-rating.css';
+@import './search.css';
 
 @font-face {
     font-family: 'courgette';
@@ -49,6 +50,10 @@ ul {
 span {
     margin: 0;
     padding: 0 5px;
+}
+
+input, select, textarea {
+    font-family: inherit;
 }
 
 button {

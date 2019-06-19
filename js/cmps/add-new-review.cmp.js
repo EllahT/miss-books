@@ -4,7 +4,7 @@ import starsRating from '../cmps/stars-rating.cmp.js';
 export default {
     template: `
     <section class="add-new-review">
-        <form id="addingForm" @submit.prevent="emitNewReview">
+        <form class="addReviewFrom" id="addingForm" @submit.prevent="emitNewReview">
             <div class="form-item">
                 <label>Full Name</label>
                 <input ref="fullNameInput" type="text" v-model="review.fullName"/>

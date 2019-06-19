@@ -6,12 +6,17 @@ export default {
   getBookById,
   getReviews,
   addReview,
-  removeReview
+  removeReview, 
+  getGoogleBooks,
+  addGoogleBook
 }
 
-const BOOKS_KEY = 'books';
+let booksSearchs = {};
 
-var booksDB;
+const BOOKS_KEY = 'books';
+const PREV_SEARCHS = 'prev_searchs';
+
+let booksDB;
 
 const defaultBooks = [
   {
@@ -470,34 +475,15 @@ const defaultBooks = [
   ];
 
 function query() {
-    let books = storageService.load(BOOKS_KEY);
-    (books)? booksDB = books : booksDB = defaultBooks;
-    return Promise.resolve(booksDB);
+  let books = storageService.load(BOOKS_KEY);
+  (books)? booksDB = books : booksDB = defaultBooks;
+  return Promise.resolve(booksDB);
 }
 
 function getBookById(id) { 
+  if (!booksDB) query();
   const selectedBook = booksDB.find(book => book.id === id);
   return Promise.resolve(selectedBook);
-}
-
-function generateBooks() {
-    var books = []
-    for (let index = 0; index < 20; index++) {
-        var book = createBook()
-        books.push(book)
-    }
-    return books;
-}
-
-function createBook() {
-    var imgBaseUrl = 'http://coding-academy.org/books-photos/'
-    var book = {
-        id: utilService.makeId(),
-        title: utilService.makeLorem(10),
-        publishedDate: utilService.getRandomInt(1900, 2000),
-        thumbnail: imgBaseUrl + utilService.getRandomInt(1, 21) + '.jpg',
-    }
-    return book;
 }
 
 function getReviews(bookId) {
@@ -521,6 +507,48 @@ function removeReview(bookId, reviewId) {
   let reviewIdx = book.reviews.findIndex(review => review.id === reviewId);
   book.reviews.splice(reviewIdx,1);
   storageService.store(BOOKS_KEY,booksDB);
+}
+
+function getGoogleBooks(searchTxt) {
+  booksSearchs = storageService.load(PREV_SEARCHS);
+
+  if (!booksSearchs) booksSearchs = {};
+  
+  if (booksSearchs[searchTxt]) {
+    return Promise.resolve(booksSearchs[searchTxt]);
+  }
+
+  console.log(searchTxt)
+  return fetch(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchTxt}`)
+  .then(res => res.json())
+  .then(res => {
+    booksSearchs[searchTxt] = res.items;
+    storageService.store(PREV_SEARCHS,booksSearchs);
+    return res.items;
+  })
+  .catch((err) => {
+    console.log('there is a problam', err);
+  })
+}
+
+function addGoogleBook(googleBook) {
+  console.log(googleBook);
+  let newBook = {
+    "id": utilService.makeId(),
+    "title": googleBook.volumeInfo.title,
+    "subtitle": '',
+    "authors": googleBook.volumeInfo.authors,
+    "publishedDate": googleBook.volumeInfo.publishedDate,
+    "description": googleBook.volumeInfo.description,
+    "pageCount": googleBook.volumeInfo.pageCount,
+    "categories": googleBook.volumeInfo.categories,
+    "thumbnail": googleBook.volumeInfo.imageLinks.thumbnail,
+    "language": googleBook.volumeInfo.language,
+    "listPrice": { "amount": utilService.getRandomInt(50,200), "currencyCode": "ILS", "isOnSale": ((utilService.getRandomInt(0,10)> 5)? true : false)}
+  }
+
+  booksDB.push(newBook);
+  storageService.store(BOOKS_KEY, booksDB);
 }
 
 
