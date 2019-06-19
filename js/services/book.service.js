@@ -500,6 +500,8 @@ function addReview(bookId, review) {
   if (!book.reviews) book.reviews = [];
   book.reviews.push(review);
   storageService.store(BOOKS_KEY,booksDB);
+
+  return Promise.resolve(bookId);
 }
 
 function removeReview(bookId, reviewId) {
@@ -507,6 +509,8 @@ function removeReview(bookId, reviewId) {
   let reviewIdx = book.reviews.findIndex(review => review.id === reviewId);
   book.reviews.splice(reviewIdx,1);
   storageService.store(BOOKS_KEY,booksDB);
+
+  return Promise.resolve(bookId);
 }
 
 function getGoogleBooks(searchTxt) {
@@ -518,7 +522,6 @@ function getGoogleBooks(searchTxt) {
     return Promise.resolve(booksSearchs[searchTxt]);
   }
 
-  console.log(searchTxt)
   return fetch(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchTxt}`)
   .then(res => res.json())
   .then(res => {
@@ -532,7 +535,6 @@ function getGoogleBooks(searchTxt) {
 }
 
 function addGoogleBook(googleBook) {
-  console.log(googleBook);
   let newBook = {
     "id": utilService.makeId(),
     "title": googleBook.volumeInfo.title,
@@ -549,6 +551,8 @@ function addGoogleBook(googleBook) {
 
   booksDB.push(newBook);
   storageService.store(BOOKS_KEY, booksDB);
+
+  return Promise.resolve(newBook.id);
 }
 
 

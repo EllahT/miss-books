@@ -1,4 +1,5 @@
 import bookService from '../services/book.service.js';
+import eventBus, { SHOW_MSG } from '../event-bus.js'
 
 export default {
     template: `
@@ -11,6 +12,7 @@ export default {
             </form>
         </div>
 
+        <button @click="clearList" v-if="books">Clear</button>
         <ul class="search-res" v-if="books">
             <li v-for="book in books">
                 {{book.volumeInfo.title}}
@@ -41,7 +43,16 @@ export default {
         },
 
         addBook(book) {
-            bookService.addGoogleBook(book);
+            bookService.addGoogleBook(book)
+                .then((id) => {
+                    eventBus.$emit(SHOW_MSG,
+                        {txt: 'book was added to your list!', type: 'success' ,bookId: id});
+                })
+        },
+
+        clearList() {
+            this.books = null;
+            this.searchTxt= '';
         }
     }, 
 }

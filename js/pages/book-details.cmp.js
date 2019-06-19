@@ -2,6 +2,7 @@ import bookDescription from '../cmps/book-description.cmp.js';
 import bookReviews from '../cmps/book-reviews.cmp.js';
 import bookService from '../services/book.service.js';
 import utilService from '../services/util.service.js';
+import eventBus, { SHOW_MSG } from '../event-bus.js'
 
 export default {
     
@@ -91,11 +92,19 @@ export default {
         },
 
         saveReview(review) {
-            bookService.addReview(this.book.id, review);
+            bookService.addReview(this.book.id, review)
+            .then((id) => {
+                eventBus.$emit(SHOW_MSG,
+                    {txt: 'review was added!', type: 'success' ,bookId: id});
+            })
         },
 
         deleteReview(reviewId) {
-            bookService.removeReview(this.book.id,reviewId);
+            bookService.removeReview(this.book.id,reviewId)
+            .then((id) => {
+                eventBus.$emit(SHOW_MSG,
+                    {txt: 'review was deleted!', type: 'failure' ,bookId: id});
+            })
         },
     },
 

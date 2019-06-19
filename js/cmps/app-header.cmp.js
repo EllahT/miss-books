@@ -1,3 +1,5 @@
+import userMsg from './user-msg.cmp.js';
+
 export default {
     template: `
             <header>
@@ -7,8 +9,13 @@ export default {
                     <router-link to="/about">About</router-link> |
                     <router-link exact to="/book">Books</router-link> 
                 </nav>
+                <user-msg></user-msg>
                 
             </header>    
     
-    `
+    `,
+
+    components: {
+        userMsg
+    }
 }
