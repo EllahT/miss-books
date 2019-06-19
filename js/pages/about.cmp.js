@@ -14,6 +14,13 @@ export default {
             <transition name="fade" type="animation" appear>
                 <p class="about-txt">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae reprehenderit magni corrupti, animi quidem pariatur sunt quos maxime, quo culpa quia aliquid? Ullam dicta magni blanditiis illum dolore iste nobis!</p>
             </transition>
+
+            <div class="sub-about">
+                <router-link to="/about/vision">Our Vision</router-link> | 
+                <router-link to="/about/team">Our Team</router-link>
+                <router-view></router-view>
+            </div>
+
         </section>
     `,
 

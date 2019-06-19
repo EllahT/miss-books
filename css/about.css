@@ -10,11 +10,17 @@
 
 .about-image {
     width: 600px;
+    border-radius: 10px;
 }
 
 .about-txt {
     background-color: #00bcd480;
     color: white;
+}
+
+.sub-about {
+    background-color: lightblue;
+    border-radius: 10px;
 }
 
 .fade-enter-active {
