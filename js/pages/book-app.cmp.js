@@ -40,7 +40,7 @@ export default {
                 let maxPrice = (filter.priceRange.toPrice === null)? 10000000 : +filter.priceRange.toPrice;
     
                 filteredBooks = this.books.filter (book => {
-                        if (!book.title.includes(filter.title)) return false;
+                        if (!book.title.toLowerCase().includes(filter.title.toLowerCase())) return false;
                         if (minPrice > book.listPrice.amount) return false;
                         if (maxPrice < book.listPrice.amount) return false;
                         
