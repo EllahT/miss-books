@@ -1,9 +1,14 @@
+const STARS_COUNT =5;
+
 export default {
     template: `
     <div class="stars-rating">
         <ul class="stars-list">
             <li v-for="(star, index) in stars">
-                <i class="star fa fa-star" :class="{'active-star': star.isFilled}" @mouseover="viewAsActive(index)" @click="changeRate(index)" @mouseout="changeRate(index)"></i>
+                <i class="star fa fa-star" :class="{'active-star': star.isFilled}"
+                   @mouseover="viewAsActive(index)"
+                   @click="changeRate(index)"
+                   @mouseout="changeRate(index)"></i>
             </li>
         </ul>
     </div>
@@ -18,14 +23,13 @@ export default {
     },
 
     created() {
-        let stars = [];
-        for (var i = 0; i < 5; i++) {
-            const isFilled = (i < this.rate)? true : false;
-            const star = {id: i, isFilled: isFilled};
-            stars.push(star);
+        this.stars = [];
+        for (var i = 0; i < STARS_COUNT; i++) {
+            this.stars.push({
+                id: i,
+                isFilled: i < this.rate
+            });
         }
-
-        this.stars = stars;
     },
 
     methods: {
@@ -34,13 +38,7 @@ export default {
         },
 
         viewAsActive(index) {
-            for (var i = 0; i <= index; i++) {
-                this.stars[i].isFilled = true;
-            }
-
-            for (var i = index+1; i < 5; i++) {
-                this.stars[i].isFilled = false;
-            }
+            this.stars.map((star, index) => star.isFilled = i <= index);
         }
     }
 }
